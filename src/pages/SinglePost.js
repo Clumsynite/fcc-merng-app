@@ -9,6 +9,7 @@ import {
   Icon,
   Image,
   Label,
+  Popup,
 } from "semantic-ui-react";
 import DeleteButton from "../components/DeleteButton";
 import LikeButton from "../components/LikeButton";
@@ -31,7 +32,7 @@ export default function SinglePost(props) {
     variables: { postId, body: comment },
     update() {
       setComment("");
-      commentInputRef.current.blur()
+      commentInputRef.current.blur();
     },
   });
 
@@ -75,18 +76,24 @@ export default function SinglePost(props) {
               <hr />
               <Card.Content extra>
                 <LikeButton user={user} post={{ id, likes, likeCount }} />
-                <Button
-                  as="div"
-                  labelPosition="right"
-                  onClick={() => console.log("Comment on Post")}
-                >
-                  <Button basic color="blue">
-                    <Icon name="comments" />
-                  </Button>
-                  <Label basic color="blue" pointing="left">
-                    {commentCount}
-                  </Label>
-                </Button>
+                <Popup
+                  content="Comment on Post"
+                  inverted
+                  trigger={
+                    <Button
+                      as="div"
+                      labelPosition="right"
+                      onClick={() => console.log("Comment on Post")}
+                    >
+                      <Button basic color="blue">
+                        <Icon name="comments" />
+                      </Button>
+                      <Label basic color="blue" pointing="left">
+                        {commentCount}
+                      </Label>
+                    </Button>
+                  }
+                />
                 {user && user.username === username && (
                   <DeleteButton postId={id} callback={deletePostCallback} />
                 )}
