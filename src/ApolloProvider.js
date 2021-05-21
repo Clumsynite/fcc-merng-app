@@ -10,7 +10,7 @@ import { setContext } from "@apollo/client/link/context";
 import App from "./App";
 
 const httpLink = createHttpLink({
-  uri: "https://fcc-merng-api.herokuapp.com,
+  uri: "https://fcc-merng-api.herokuapp.com",
 });
 
 const authLink = setContext(() => {
